@@ -3,6 +3,7 @@ package com.andreas.microservice.Controller;
 import com.andreas.microservice.Entity.Student;
 import com.andreas.microservice.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,14 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @Value("${server.port}")
+    private String serverPort;
+
+    @Value("${spring.application.name}")
+    private String appName;
+
     @RequestMapping("/who")
-    public String whoami(){return "Instanz 2";}
+    public String whoami(){return "Service-Name: "+appName+"Port: "+serverPort;}
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Student getStudentByID(@PathVariable("id") int id){
