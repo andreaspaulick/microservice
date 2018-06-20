@@ -29,7 +29,7 @@ public class StudentController {
     private String appName;
 
     @RequestMapping("/who")
-    public String whoami(){return "Service-Name: "+appName+"Port: "+serverPort;}
+    public String whoami(){return "Service-Name: "+appName+" Port: "+serverPort;}
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Student getStudentByID(@PathVariable("id") int id){
